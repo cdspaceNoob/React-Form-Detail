@@ -7,23 +7,20 @@ const SimpleInput = (props) => {
   const enteredNameIsValid = enteredName.trim() !== "";
   const nameInputIsInvalid = !enteredNameIsValid && enteredNameTouched;
 
-  let formIsValid = false;
-
-  if (enteredNameIsValid) {
-    formIsValid = true;
-  }
-
   const nameInputChangeHandler = (event) => {
     setEnteredName(event.target.value);
   };
 
   const nameInputBlurHandler = (event) => {
+    // 사용자가 건드렸다는 뜻이다.
     setEnteredNameTouched(true);
   };
 
   const formSubmissionHandler = (event) => {
+    // http request가 실행되면 브라우저는 새로고침된다. 그걸 방지해준다.
     event.preventDefault();
 
+    // 공백으로 제출했어도 아무튼 사용자가 의식한 것이다.
     setEnteredNameTouched(true);
 
     if (!enteredNameIsValid) {
@@ -56,7 +53,7 @@ const SimpleInput = (props) => {
         )}
       </div>
       <div className="form-actions">
-        <button disabled={!formIsValid}>Submit</button>
+        <button>Submit</button>
       </div>
     </form>
   );
