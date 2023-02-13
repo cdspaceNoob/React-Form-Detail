@@ -10,7 +10,7 @@ const inputStateReducer = (state, action) => {
     return { value: action.value, isTouched: state.isTouched };
   }
   if (action.type === "BLUR") {
-    return { value: action.value, isTouched: true };
+    return { value: state.value, isTouched: true };
   }
   if (action.type === "REST") {
     return { value: "", isTouched: false };
